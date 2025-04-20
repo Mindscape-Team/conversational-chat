@@ -3,200 +3,159 @@ base_model: meta-llama/Llama-3.2-3B-Instruct
 library_name: peft
 ---
 
-# Model Card for Model ID
+# Mental Health Support Chatbot
 
-
-
-
+A fine-tuned language model specialized in providing empathetic and supportive mental health conversations.
 
 ## Model Details
 
 ### Model Description
 
+This model is a fine-tuned version of Llama-3.2-3B-Instruct, specifically trained to provide supportive mental health conversations. It has been trained on therapeutic dialogue data to better understand and respond to mental health concerns with empathy and professional guidance.
+
+- **Developed by:** Nada
+- **Model type:** Causal Language Model
+- **Language(s) (NLP):** English
+- **License:** Same as base model
+- **Finetuned from model:** meta-llama/Llama-3.2-3B-Instruct
 
 
-
-
-- **Developed by:** [More Information Needed]
-- **Funded by [optional]:** [More Information Needed]
-- **Shared by [optional]:** [More Information Needed]
-- **Model type:** [More Information Needed]
-- **Language(s) (NLP):** [More Information Needed]
-- **License:** [More Information Needed]
-- **Finetuned from model [optional]:** [More Information Needed]
-
-### Model Sources [optional]
-
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** [More Information Needed]
-- **Paper [optional]:** [More Information Needed]
-- **Demo [optional]:** [More Information Needed]
-
-## Uses
-
-<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
 
 ### Direct Use
 
-<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
+This model is designed to be used as a mental health support chatbot, providing:
+- Empathetic responses to mental health concerns
+- Supportive conversation
+- Professional therapeutic guidance
+- Crisis intervention support
 
-[More Information Needed]
+### Downstream Use
 
-### Downstream Use [optional]
-
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-[More Information Needed]
+The model can be integrated into:
+- Mental health support applications
+- Therapeutic conversation platforms
+- Crisis intervention systems
+- Mental health education tools
 
 ### Out-of-Scope Use
 
-<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
-
-[More Information Needed]
+This model should NOT be used for:
+- Emergency medical advice
+- Professional therapy replacement
+- Legal advice
+- Harmful or manipulative purposes
 
 ## Bias, Risks, and Limitations
 
-<!-- This section is meant to convey both technical and sociotechnical limitations. -->
+### Limitations
 
-[More Information Needed]
+- The model is not a replacement for professional mental health care
+- May not handle all crisis situations appropriately
+- Limited to English language interactions
+- May have biases present in the training data
 
 ### Recommendations
 
-<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
-
-Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
+Users should:
+- Always provide clear disclaimers that this is an AI assistant
+- Include emergency contact information
+- Have human oversight for critical situations
+- Monitor conversations for potential risks
+- Provide clear instructions for seeking professional help
 
 ## How to Get Started with the Model
 
-Use the code below to get started with the model.
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-[More Information Needed]
+model_name = "nada013/mental-health-chatbot"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+# Example usage
+def generate_response(prompt):
+    inputs = tokenizer(prompt, return_tensors="pt")
+    outputs = model.generate(**inputs, max_length=200)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+```
 
 ## Training Details
 
 ### Training Data
 
-<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
-
-[More Information Needed]
+The model was fine-tuned on:
+- MentalChat16K dataset
+- Therapeutic conversation data
+- Mental health support dialogues
 
 ### Training Procedure
 
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
-
-#### Preprocessing [optional]
-
-[More Information Needed]
-
-
 #### Training Hyperparameters
 
-- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
+- **Training regime:** Mixed precision training
+- **Learning rate:** 2e-5
+- **Batch size:** 1
+- **Gradient accumulation steps:** 8
+- **Epochs:** 3
+- **Warmup ratio:** 0.03
 
-#### Speeds, Sizes, Times [optional]
+#### Speeds, Sizes, Times
 
-<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
-
-[More Information Needed]
+- **Base model:** Llama-3.2-3B-Instruct
+- **Fine-tuning time:** [22 hours]
+- **Model size:** ~3.2B parameters
 
 ## Evaluation
 
-<!-- This section describes the evaluation protocols and provides the results. -->
+### Testing Data
 
-### Testing Data, Factors & Metrics
+The model was evaluated on:
+- Mental health conversation datasets
+- Therapeutic dialogue benchmarks
+- User interaction testing
 
-#### Testing Data
+### Metrics
 
-<!-- This should link to a Dataset Card if possible. -->
+- Response quality
+- Empathy level
+- Professional tone
+- Safety measures
+- Crisis detection
 
-[More Information Needed]
-
-#### Factors
-
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-[More Information Needed]
-
-#### Metrics
-
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
-
-[More Information Needed]
-
-### Results
-
-[More Information Needed]
-
-#### Summary
-
-
-
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-[More Information Needed]
-
-## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** [More Information Needed]
-- **Hours used:** [More Information Needed]
-- **Cloud Provider:** [More Information Needed]
-- **Compute Region:** [More Information Needed]
-- **Carbon Emitted:** [More Information Needed]
-
-## Technical Specifications [optional]
+## Technical Specifications
 
 ### Model Architecture and Objective
 
-[More Information Needed]
+- **Architecture:** Transformer-based language model
+- **Objective:** Generate supportive and empathetic responses to mental health concerns
+- **Fine-tuning method:** LoRA (Low-Rank Adaptation)
+- **LoRA parameters:**
+  - r: 8
+  - alpha: 32
+  - dropout: 0.1
+  - target modules: q_proj, k_proj, v_proj, o_proj
 
 ### Compute Infrastructure
 
-[More Information Needed]
+- **Hardware:** [gpu: nividia rtx 3070Ti 8GB VRAM]
+- **Training time:** [22 hours]
+- **Framework:** PyTorch
+- **Libraries:** Transformers, PEFT
 
-#### Hardware
+## Citation
 
-[More Information Needed]
+If you use this model in your research or application, please cite:
 
-#### Software
+```bibtex
+@misc{mental-health-chatbot-2024,
+  author = {Nada},
+  title = {Mental Health Support Chatbot},
+  year = {2024},
+  publisher = {HuggingFace},
+  journal = {HuggingFace Hub},
+  howpublished = {\url{https://huggingface.co/nada013/mental-health-chatbot}}
+}
+```
 
-[More Information Needed]
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-[More Information Needed]
-
-**APA:**
-
-[More Information Needed]
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-[More Information Needed]
-
-## More Information [optional]
-
-[More Information Needed]
-
-## Model Card Authors [optional]
-
-[More Information Needed]
-
-## Model Card Contact
-
-[More Information Needed]
-### Framework versions
-
-- PEFT 0.15.1
+## Contact
+- Email: [nadak2982@gmail.com]
