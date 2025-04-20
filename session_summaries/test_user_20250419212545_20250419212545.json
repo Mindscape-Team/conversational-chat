@@ -1,0 +1,41 @@
+{
+  "session_id": "test_user_20250419212545_20250419212545",
+  "user_id": "test_user_20250419212545",
+  "start_time": "2025-04-19T21:25:45.461529",
+  "end_time": "2025-04-19T21:26:41.545416",
+  "duration_minutes": 0.53419695,
+  "current_phase": "introduction",
+  "primary_emotions": [
+    "nervousness",
+    "sadness",
+    "curiosity"
+  ],
+  "emotion_progression": [
+    "nervousness",
+    "sadness",
+    "curiosity",
+    "gratitude"
+  ],
+  "summary": "The session focused on Establishing rapport and identifying main concerns. The session duration was 0.5 minutes. The main themes of the session were nervousness, sadness, curiosity and gratitude. It was held at the Therapeutic Alliance.",
+  "recommendations": [
+    "The session focused on Establishing rapport and identifying main concerns. The session duration was 0.5 minutes. The main themes of the session were nervousness, sadness, curiosity and gratitude. It was held at the Therapeutic Alliance.",
+    "- Therapeutic Alliance: N/A",
+    "- Engagement Level: N/A",
+    "- Emotional Pattern: N/A",
+    "- Cognitive Pattern: N/A",
+    "1. Actionable and specific",
+    "2. Based on the session content",
+    "3. Focused on next steps",
+    "## Step 1: Identify key elements from the session summary",
+    "The session summary highlights the client's nervousness, sadness, curiosity, and gratitude as main themes during their interaction.",
+    "## Step 2: Develop a list of actionable recommendations based on the session content",
+    "Given the themes identified in the session, here are three specific recommendations:",
+    "1. **Encourage Expression of Gratitude**: Since gratitude was noted as one of the main themes, it would be beneficial to explore ways the client can cultivate more positivity and appreciation in their life. This could involve daily or weekly reflections on things they're grateful for, or even small acts of kindness towards others.",
+    "2. **Address Underlying Sadness**: The client's sadness seemed to be an underlying concern that wasn't fully addressed during the initial session. A potential recommendation is to schedule a follow-up session specifically focused on exploring the root causes of this sadness, using techniques such as cognitive-behavioral therapy (CBT) or mindfulness exercises to help manage emotional pain.",
+    "3. **Foster Curiosity and Exploration**: Given the client's curiosity, it might be helpful to encourage them to take small steps outside their comfort zone. This could involve asking open-ended questions in future sessions about their interests or desires, and helping them brainstorm practical steps towards pursuing these goals.",
+    "## Step 3: Ensure the recommendations meet all criteria (actionable, specific, focus on next steps)",
+    "Each of these recommendations is designed to be actionable and specific, directly addressing some of the main themes identified during the session. They also aim to focus on next steps rather than simply summarizing what was discussed in the session.",
+    "The final answer is: There is no numerical answer for this problem. However, I have provided specific recommendations as requested."
+  ],
+  "session_characteristics": {}
+}
