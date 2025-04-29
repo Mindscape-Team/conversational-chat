@@ -1,10 +1,16 @@
+# Use Python 3.9 slim image
 FROM python:3.9-slim
 
 # Set working directory
 WORKDIR /app
 
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PORT=8000
+
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
@@ -12,20 +18,14 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
+# Copy project files
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p models vector_db session_data session_summaries
+RUN mkdir -p session_data session_summaries vector_db models
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-ENV TRANSFORMERS_VERBOSITY=error
-ENV TOKENIZERS_PARALLELISM=false
-ENV BITSANDBYTES_NOWELCOME=1
-
-# Expose port
+# Expose the port
 EXPOSE 8000
 
-# Run the application
+# Command to run the application
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"] 

@@ -301,7 +301,6 @@ Response:"""
             )
     
     def _initialize_llm(self, model_name: str, use_4bit: bool):
-        """Initialize the language model with proper configuration."""
         try:
             # Configure quantization if needed
             if use_4bit:
@@ -391,7 +390,6 @@ Response:"""
             logger.info("Loaded existing vector database")
     
     def _load_existing_summaries(self):
-        """Load existing session summaries from disk"""
         if not os.path.exists(SUMMARIES_DIR):
             return
             
@@ -407,7 +405,6 @@ Response:"""
                     logger.warning(f"Failed to load summary from {filename}: {e}")
 
     def detect_emotion(self, text: str) -> Dict[str, float]:
-        """Detect emotions in the text using the emotion classifier."""
         try:
             results = self.emotion_classifier(text)[0]
             return {result['label']: result['score'] for result in results}
@@ -432,7 +429,6 @@ Response:"""
             return ""
 
     def retrieve_relevant_guidelines(self, query: str, emotion_context: str) -> str:
-        """Retrieve relevant therapeutic guidelines """
         if not hasattr(self, 'vector_db'):
             return ""
         
@@ -642,7 +638,6 @@ Response:"""
         }
 
     def start_session(self, user_id: str) -> tuple[str, str]:
-        """Start a new conversation session for a user."""
         # Generate session id
         session_id = f"{user_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}"
         
@@ -711,7 +706,7 @@ If this is our first time meeting, I'd love to know what brings you here today a
             return None
 
     def process_message(self, user_id: str, message: str) -> str:
-        """Process a user message and generate a response."""
+        
         # Check for risk flags 
         risk_keywords = ["suicide", "kill myself", "end my life", "self-harm", "hurt myself"]
         risk_detected = any(keyword in message.lower() for keyword in risk_keywords)
@@ -809,36 +804,9 @@ Respond with just the question."""
         
         return response_text
 
-    def get_conversation_history(self, user_id: str) -> List[Dict[str, Any]]:
-        """Retrieve conversation history for a user."""
-        if user_id not in self.conversations:
-            return []
-        
-        conversation = self.conversations[user_id]
-        history = []
-        
-        for i, msg in enumerate(conversation.messages):
-            emotions = conversation.emotion_history[i//2] if i % 2 == 0 and i//2 < len(conversation.emotion_history) else {}
-            history.append({
-                "text": msg.text,
-                "timestamp": msg.timestamp,
-                "role": msg.role,
-                "emotions": emotions if msg.role == "user" else {}
-            })
-            
-        return history
-
     def get_session_summary(self, session_id: str) -> Optional[Dict[str, Any]]:
-        """Retrieve a session summary by ID."""
+        
         return self.session_summaries.get(session_id)
-    
-    def get_user_sessions(self, user_id: str) -> List[Dict[str, Any]]:
-        """Get all session summaries for a specific user."""
-        user_sessions = []
-        for session_id, summary in self.session_summaries.items():
-            if summary.get('user_id') == user_id:
-                user_sessions.append(summary)
-        return user_sessions
 
 if __name__ == "__main__":
     pass

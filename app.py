@@ -1,10 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List, Dict, Any
 import os
 from dotenv import load_dotenv
 from chatbot import MentalHealthChatbot
+from datetime import datetime
 
 # Load environment variables
 load_dotenv()
@@ -16,10 +17,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:8000").split(",")
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=allowed_origins,  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,7 +36,7 @@ chatbot = MentalHealthChatbot(
     use_4bit=True
 )
 
-# Pydantic models for request/response
+# pydantic models
 class MessageRequest(BaseModel):
     user_id: str
     message: str
@@ -49,11 +52,11 @@ class SessionSummary(BaseModel):
     end_time: str
     duration_minutes: float
     current_phase: str
-    primary_emotions: list
-    emotion_progression: list
+    primary_emotions: List[str]
+    emotion_progression: List[str]
     summary: str
-    recommendations: list
-    session_characteristics: dict
+    recommendations: List[str]
+    session_characteristics: Dict[str, Any]
 
 # API endpoints
 @app.get("/")
@@ -75,7 +78,6 @@ async def root():
 
 @app.post("/start_session", response_model=MessageResponse)
 async def start_session(user_id: str):
-    """Start a new chat session."""
     try:
         session_id, initial_message = chatbot.start_session(user_id)
         return MessageResponse(response=initial_message, session_id=session_id)
@@ -84,7 +86,6 @@ async def start_session(user_id: str):
 
 @app.post("/send_message", response_model=MessageResponse)
 async def send_message(request: MessageRequest):
-    """Process a user message and return the chatbot's response."""
     try:
         response = chatbot.process_message(request.user_id, request.message)
         session = chatbot.conversations[request.user_id]
@@ -94,7 +95,6 @@ async def send_message(request: MessageRequest):
 
 @app.post("/end_session", response_model=SessionSummary)
 async def end_session(user_id: str):
-    """End the current session and return the summary."""
     try:
         summary = chatbot.end_session(user_id)
         if not summary:
@@ -105,8 +105,52 @@ async def end_session(user_id: str):
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint."""
     return {"status": "healthy"}
+
+@app.get("/session_summary/{session_id}", response_model=SessionSummary)
+async def get_session_summary(
+    session_id: str,
+    include_summary: bool = True,
+    include_recommendations: bool = True,
+    include_emotions: bool = True,
+    include_characteristics: bool = True,
+    include_duration: bool = True,
+    include_phase: bool = True
+):
+    try:
+        summary = chatbot.get_session_summary(session_id)
+        if not summary:
+            raise HTTPException(status_code=404, detail="Session summary not found")
+        
+        filtered_summary = {
+            "session_id": summary["session_id"],
+            "user_id": summary["user_id"],
+            "start_time": summary["start_time"],
+            "end_time": summary["end_time"]
+        }
+        
+        if include_summary:
+            filtered_summary["summary"] = summary["summary"]
+        
+        if include_recommendations:
+            filtered_summary["recommendations"] = summary["recommendations"]
+        
+        if include_emotions:
+            filtered_summary["primary_emotions"] = summary["primary_emotions"]
+            filtered_summary["emotion_progression"] = summary["emotion_progression"]
+        
+        if include_characteristics:
+            filtered_summary["session_characteristics"] = summary["session_characteristics"]
+        
+        if include_duration:
+            filtered_summary["duration_minutes"] = summary["duration_minutes"]
+        
+        if include_phase:
+            filtered_summary["current_phase"] = summary["current_phase"]
+        
+        return filtered_summary
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

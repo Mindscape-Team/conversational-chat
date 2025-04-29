@@ -1,0 +1,33 @@
+{
+  "session_id": "test_user_20250429162335_20250429162335",
+  "user_id": "test_user_20250429162335",
+  "start_time": "2025-04-29T16:23:35.362084",
+  "end_time": "2025-04-29T16:24:39.185183",
+  "duration_minutes": 0.7652539666666667,
+  "current_phase": "introduction",
+  "primary_emotions": [
+    "sadness",
+    "nervousness",
+    "desire"
+  ],
+  "emotion_progression": [
+    "sadness",
+    "nervousness",
+    "desire"
+  ],
+  "summary": "The session focused on Establishing rapport and identifying main concerns. The session lasted for 0.8 minutes. The main themes of the session were sadness, nervousness, desire and cognitive pattern. The sessions progress was uneventful.",
+  "recommendations": [
+    "The session focused on Establishing rapport and identifying main concerns. The session lasted for 0.8 minutes. The main themes of the session were sadness, nervousness, desire and cognitive pattern. The sessions progress was uneventful.",
+    "- Therapeutic Alliance: N/A",
+    "- Engagement Level: N/A",
+    "- Emotional Pattern: N/A",
+    "- Cognitive Pattern: N/A",
+    "1. Actionable and specific",
+    "2. Based on the session content",
+    "3. Focused on next steps",
+    "Recommendation 1: Explore the client's sad mood in further detail to better understand its root cause and how it is impacting their daily life. This could involve asking open-ended questions about their emotional experiences or using a journaling exercise to help them identify patterns.",
+    "Recommendation 2: Consider incorporating relaxation techniques or mindfulness exercises into future sessions to help the client manage their nervousness. These techniques can promote self-calming responses and reduce anxiety-related symptoms.",
+    "Recommendation 3: Review the client's current desires with an aim towards exploring potential ways they might manifest these wishes through action or goal-setting. Identifying small, achievable goals that align with their core values could foster motivation and personal growth."
+  ],
+  "session_characteristics": {}
+}

@@ -1,0 +1,30 @@
+{
+  "session_id": "test_user_20250428134126_20250428134126",
+  "user_id": "test_user_20250428134126",
+  "start_time": "2025-04-28T13:41:26.562279",
+  "end_time": "2025-04-28T13:42:04.636010",
+  "duration_minutes": 0.3641061666666667,
+  "current_phase": "introduction",
+  "primary_emotions": [
+    "neutral"
+  ],
+  "emotion_progression": [
+    "neutral"
+  ],
+  "summary": "The session focused on Establishing rapport and identifying main concerns. The session duration was 0.4 minutes and the session progress was N/A. The sessions were organized by the Therapeutic Alliance, the Engagement Level and the Emotional Pattern.",
+  "recommendations": [
+    "The session focused on Establishing rapport and identifying main concerns. The session duration was 0.4 minutes and the session progress was N/A. The sessions were organized by the Therapeutic Alliance, the Engagement Level and the Emotional Pattern.",
+    "- Therapeutic Alliance: N/A",
+    "- Engagement Level: N/A",
+    "- Emotional Pattern: N/A",
+    "- Cognitive Pattern: N/A",
+    "1. Actionable and specific",
+    "2. Based on the session content",
+    "3. Focused on next steps",
+    "Recommendation 1: Explore the client's current emotional state in future sessions through open-ended questions that encourage self-reflection and understanding of their feelings.",
+    "Recommendation 2: Develop a treatment plan based on the identified main concerns during this session to guide both the therapist and the client towards achieving therapeutic goals.",
+    "Recommendation 3: Implement a routine activity that promotes relaxation, stress reduction, or self-care, allowing the client to manage daily stress while maintaining emotional stability between sessions.",
+    "The goal is to provide actionable recommendations rooted in the provided session summary, ensuring they are specific, based on the session content, and centered around next steps."
+  ],
+  "session_characteristics": {}
+}

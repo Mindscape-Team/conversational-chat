@@ -1,0 +1,36 @@
+{
+  "session_id": "test_user_20250429162222_20250429162222",
+  "user_id": "test_user_20250429162222",
+  "start_time": "2025-04-29T16:22:22.074432",
+  "end_time": "2025-04-29T16:23:35.350585",
+  "duration_minutes": 0.94171545,
+  "current_phase": "introduction",
+  "primary_emotions": [
+    "nervousness",
+    "sadness",
+    "confusion"
+  ],
+  "emotion_progression": [
+    "nervousness",
+    "sadness",
+    "confusion",
+    "gratitude"
+  ],
+  "summary": "The session focused on Establishing rapport and identifying main concerns. The session lasted for 0.9 minutes. The main themes were nervousness, sadness and confusion. The sessions progress was uneventful.    The session was organized by the Therapeutic Alliance. ",
+  "recommendations": [
+    "The session focused on Establishing rapport and identifying main concerns. The session lasted for 0.9 minutes. The main themes were nervousness, sadness and confusion. The sessions progress was uneventful.    The session was organized by the Therapeutic Alliance.",
+    "- Therapeutic Alliance: N/A",
+    "- Engagement Level: N/A",
+    "- Emotional Pattern: N/A",
+    "- Cognitive Pattern: N/A",
+    "1. Actionable and specific",
+    "2. Based on the session content",
+    "3. Focused on next steps",
+    "Here are two to three specific recommendations based on the given information:",
+    "1. Discuss the importance of establishing a strong therapeutic alliance as the foundation for effective counseling sessions. Encourage open communication between you and your patient, fostering trust and understanding.",
+    "2. Explore ways to address the patient's current emotional state, specifically their feelings of nervousness, sadness, and confusion. This could involve discussing coping strategies or exploring underlying causes that may contribute to these emotions.",
+    "3. Develop a plan with your patient to gradually increase session duration and focus on more in-depth discussions during future sessions. This can help build momentum and enhance the overall effectiveness of therapy.",
+    "These recommendations prioritize building rapport, addressing core issues, and moving towards more substantial conversations in subsequent sessions, which aligns with the goals outlined in the session summary."
+  ],
+  "session_characteristics": {}
+}

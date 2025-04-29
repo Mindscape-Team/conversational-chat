@@ -1,0 +1,36 @@
+{
+  "session_id": "test_user_20250429155848_20250429155848",
+  "user_id": "test_user_20250429155848",
+  "start_time": "2025-04-29T15:58:48.473812",
+  "end_time": "2025-04-29T16:00:15.766723",
+  "duration_minutes": 1.0019895666666667,
+  "current_phase": "introduction",
+  "primary_emotions": [
+    "nervousness",
+    "sadness",
+    "curiosity"
+  ],
+  "emotion_progression": [
+    "nervousness",
+    "sadness",
+    "curiosity",
+    "gratitude"
+  ],
+  "summary": "The session focused on Establishing rapport and identifying main concerns. The main themes were nervousness, sadness, curiosity and gratitude. The session lasted for 1.0 minutes and was organized by the Therapeutic Alliance and the Engagement Level.",
+  "recommendations": [
+    "The session focused on Establishing rapport and identifying main concerns. The main themes were nervousness, sadness, curiosity and gratitude. The session lasted for 1.0 minutes and was organized by the Therapeutic Alliance and the Engagement Level.",
+    "- Therapeutic Alliance: N/A",
+    "- Engagement Level: N/A",
+    "- Emotional Pattern: N/A",
+    "- Cognitive Pattern: N/A",
+    "1. Actionable and specific",
+    "2. Based on the session content",
+    "3. Focused on next steps",
+    "To begin with, I would recommend focusing on establishing a stronger therapeutic alliance to foster trust and openness between you and your therapist. This can be achieved by actively listening to each other, validating emotions, and setting clear boundaries.",
+    "Building trust is crucial in therapy as it allows both parties to feel safe sharing their thoughts and feelings without fear of judgment or criticism. By creating an environment where both you and your therapist feel comfortable discussing sensitive topics, you may experience greater improvements in your mental health over time.",
+    "Additionally, exploring the main concerns that brought you to therapy during future sessions could provide valuable insights into your current state of mind. This process involves reflecting upon your emotional experiences and how they relate to specific life events or situations. Identifying these patterns can offer a deeper understanding of yourself and potentially lead to more effective coping strategies.",
+    "Lastly, cultivating curiosity about personal growth and self-improvement is essential for moving forward positively within therapy. Engaging in activities outside of regular sessions that align with your values and goals can serve as catalysts for meaningful change. These practices not only contribute to personal fulfillment but also enhance overall well-being.",
+    "It's important to note that every individual's journey through therapy is unique, so it may take some trial-and-error to find the right combination of techniques that work best for you. Patience and perseverance are key components of this process."
+  ],
+  "session_characteristics": {}
+}

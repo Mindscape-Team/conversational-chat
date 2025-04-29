@@ -8,17 +8,7 @@ from pydantic import BaseModel, Field
 # Configure logging
 logger = logging.getLogger(__name__)
 
-class TopicInfo(BaseModel):
-    """Represents a conversation topic with its metadata."""
-    name: str
-    confidence: float
-    first_mentioned: str  # ISO timestamp
-    last_mentioned: str  # ISO timestamp
-    mention_count: int = 1
-    related_emotions: Dict[str, float] = {}
-    
 class ConversationPhase(BaseModel):
-    """Model representing a conversation phase."""
     name: str
     description: str
     goals: List[str]
@@ -28,10 +18,6 @@ class ConversationPhase(BaseModel):
     completion_metrics: Dict[str, float] = {}  # e.g., {'goal_progress': 0.8}
 
 class FlowManager:
-    """
-    Advanced conversation flow manager for therapeutic conversations.
-    Uses LLM for dynamic phase transitions and response guidance.
-    """
     
     # Define conversation phases 
     PHASES = {
@@ -345,7 +331,7 @@ class FlowManager:
             total = sum(emotion_summary.values())
             emotion_summary = {e: s/total for e, s in emotion_summary.items()}
             
-        # Create prompt for LLM
+        #  prompt for LLM
         prompt = f"""
         Analyze this therapy session and provide a JSON response with the following characteristics:
         
@@ -403,7 +389,7 @@ class FlowManager:
             logger.warning("No JSON object found in LLM response")
     
     def _create_flow_context(self, user_id: str) -> Dict[str, Any]:
-        """Create flow context dict for response generation."""
+        
         session = self.user_sessions[user_id]
         current_phase = session['current_phase']
         
