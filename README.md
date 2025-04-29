@@ -100,10 +100,9 @@ curl "http://localhost:8000/session_summary/session_id_here"
 
 ## Important Notes
 
-- This chatbot is not a replacement for professional mental health care
+- This is not a replacement for professional mental health care
 - Always seek professional help for serious mental health concerns
-- The chatbot is designed to provide support and coping strategies
-- All conversations are stored in memory and will be lost when the server restarts
+
 
 ## Privacy and Security
 
