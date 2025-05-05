@@ -42,13 +42,7 @@ When risk flags are detected:
 ### Example Crisis Response
 ```json
 {
-    "response": """I'm really sorry you're feeling this way — it sounds incredibly heavy, 
-and I want you to know that you're not alone. You don't have to face this by yourself. 
-Our app has licensed mental health professionals ready to support you. 
-I can connect you with one right now if you'd like.
-
-Would you like to connect with a professional now, 
-or would you rather keep talking with me for a bit? Either way, I'm here for you.""",
+    "response":"I'm really sorry you're feeling this way — it sounds incredibly heavy,\nand I want you to know that you're not alone. You don't have to face this by yourself.\nOur app has licensed mental health professionals ready to support you.\nI can connect you with one right now if you'd like.\n\nWould you like to connect with a professional now,\nor would you rather keep talking with me for a bit? Either way, I'm here for you.",
   "session_id": "user123_20240314103000",
   "risk_detected": true,
   "crisis_protocol_activated": true
