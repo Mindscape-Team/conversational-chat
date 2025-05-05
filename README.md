@@ -27,7 +27,7 @@ python -m nltk.downloader punkt
 python app.py
 ```
 
-The server will start on `http://localhost:8000`
+The server will start on `http://127.0.0.1:8000`
 
 ## API Endpoints
 
@@ -75,6 +75,12 @@ The server will start on `http://localhost:8000`
   - `include_phase` (boolean)
 - **Response**: Filtered session summary based on included parameters
 
+### Get user replies
+- **Endpoint**: `Get /user_replies/{user_id}`
+- **Query Parameter**: `user_id`
+- **Response**: json file with user replies
+
+
 ### Health Check
 - **Endpoint**: `GET /health`
 - **Response**: `{"status": "healthy"}`
@@ -84,18 +90,23 @@ The server will start on `http://localhost:8000`
 Using curl:
 ```bash
 
-curl -X POST "http://localhost:8000/start_session?user_id=user123"
+curl -X POST "http://127.0.0.1:8000/start_session?user_id=user123"
 
 # Send a message
-curl -X POST "http://localhost:8000/send_message" \
+curl -X POST "http://127.0.0.1:8000/send_message" \
      -H "Content-Type: application/json" \
      -d '{"user_id": "user123", "message": "I\'m feeling really anxious today"}'
 
 # End a session
-curl -X POST "http://localhost:8000/end_session?user_id=user123"
+curl -X POST "http://127.0.0.1:8000/end_session?user_id=user123"
 
 # Get session summary
-curl "http://localhost:8000/session_summary/session_id_here"
+curl "http://127.0.0.1:8000/session_summary/session_id_here"
+
+# Get User replies
+curl -X 'GET' \
+  'http://127.0.0.1:8000/user_replies/test_user_20250505172601' \
+  -H 'accept: application/json'
 ```
 
 ## Important Notes
