@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import os
 from dotenv import load_dotenv
 from chatbot import MentalHealthChatbot
 from datetime import datetime
+import json
 
 # Load environment variables
 load_dotenv()
@@ -57,6 +59,11 @@ class SessionSummary(BaseModel):
     summary: str
     recommendations: List[str]
     session_characteristics: Dict[str, Any]
+
+class UserReply(BaseModel):
+    text: str
+    timestamp: str
+    session_id: str
 
 # API endpoints
 @app.get("/")
@@ -126,29 +133,62 @@ async def get_session_summary(
             "session_id": summary["session_id"],
             "user_id": summary["user_id"],
             "start_time": summary["start_time"],
-            "end_time": summary["end_time"]
+            "end_time": summary["end_time"],
+            "duration_minutes": summary.get("duration_minutes", 0.0),
+            "current_phase": summary.get("current_phase", "unknown"),
+            "primary_emotions": summary.get("primary_emotions", []),
+            "emotion_progression": summary.get("emotion_progression", []),
+            "summary": summary.get("summary", ""),
+            "recommendations": summary.get("recommendations", []),
+            "session_characteristics": summary.get("session_characteristics", {})
         }
         
-        if include_summary:
-            filtered_summary["summary"] = summary["summary"]
-        
-        if include_recommendations:
-            filtered_summary["recommendations"] = summary["recommendations"]
-        
-        if include_emotions:
-            filtered_summary["primary_emotions"] = summary["primary_emotions"]
-            filtered_summary["emotion_progression"] = summary["emotion_progression"]
-        
-        if include_characteristics:
-            filtered_summary["session_characteristics"] = summary["session_characteristics"]
-        
-        if include_duration:
-            filtered_summary["duration_minutes"] = summary["duration_minutes"]
-        
-        if include_phase:
-            filtered_summary["current_phase"] = summary["current_phase"]
+        # Filter out fields based on include parameters
+        if not include_summary:
+            filtered_summary["summary"] = ""
+        if not include_recommendations:
+            filtered_summary["recommendations"] = []
+        if not include_emotions:
+            filtered_summary["primary_emotions"] = []
+            filtered_summary["emotion_progression"] = []
+        if not include_characteristics:
+            filtered_summary["session_characteristics"] = {}
+        if not include_duration:
+            filtered_summary["duration_minutes"] = 0.0
+        if not include_phase:
+            filtered_summary["current_phase"] = "unknown"
         
         return filtered_summary
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/user_replies/{user_id}")
+async def get_user_replies(user_id: str):
+    try:
+        replies = chatbot.get_user_replies(user_id)
+        
+        # Create a filename with user_id and timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"user_replies_{user_id}_{timestamp}.json"
+        filepath = os.path.join("user_replies", filename)
+        
+        # Ensure directory exists
+        os.makedirs("user_replies", exist_ok=True)
+        
+        # Write replies to JSON file
+        with open(filepath, 'w') as f:
+            json.dump({
+                "user_id": user_id,
+                "timestamp": datetime.now().isoformat(),
+                "replies": replies
+            }, f, indent=2)
+        
+        # Return the file
+        return FileResponse(
+            path=filepath,
+            filename=filename,
+            media_type="application/json"
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

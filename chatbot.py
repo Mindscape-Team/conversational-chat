@@ -413,7 +413,7 @@ Response:"""
             return {"neutral": 1.0}
 
     def retrieve_relevant_context(self, query: str, k: int = 3) -> str:
-        """Retrieve relevant past conversations using vector similarity"""
+        # Retrieve relevant past conversations using vector similarity
         if not hasattr(self, 'vector_db'):
             return ""
         
@@ -656,8 +656,7 @@ Response:"""
         self.memory.clear()
         
         # Generate initial greeting and question
-        initial_message = """Hello! I'm here to support you today. How have you been feeling since our last session? 
-If this is our first time meeting, I'd love to know what brings you here today and how you're feeling right now."""
+        initial_message = """Hello! I'm here to support you today. How have you been feeling lately?"""
         
         # Add the initial message to conversation history
         assistant_message = Message(
@@ -807,6 +806,23 @@ Respond with just the question."""
     def get_session_summary(self, session_id: str) -> Optional[Dict[str, Any]]:
         
         return self.session_summaries.get(session_id)
+
+    def get_user_replies(self, user_id: str) -> List[Dict[str, Any]]:
+        if user_id not in self.conversations:
+            return []
+            
+        conversation = self.conversations[user_id]
+        user_replies = []
+        
+        for message in conversation.messages:
+            if message.role == "user":
+                user_replies.append({
+                    "text": message.text,
+                    "timestamp": message.timestamp,
+                    "session_id": conversation.session_id
+                })
+                
+        return user_replies
 
 if __name__ == "__main__":
     pass
